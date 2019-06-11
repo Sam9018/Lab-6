@@ -191,8 +191,36 @@ var SeatacAirport = {
 
   generateRandom:function (min,max) {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+  },
+  cookiesPerHour: function() {
+    return Math.floor(this.generateRandom(this.minCust, this.maxCust))* this.avgCookiePer);
+  },
+
+  render: function () {
+
+    var divElement = document.getElementById('store');
+    var storeTitle = document.createElement('ul"');
+    storeTitle.textContent = this.name;
+    divElement.appendChild(storeData);
+
+
+    for (var i=0; i< time.length; i++) {
+      console.log(`${time[i]}: ${cookiesSoldPerHour} cookies`);
+      var  hourData = document.createdElement('li');
+      var cookiesSoldPerHour = this.cookiesPerHour();
+      hourData.textContent = `${time[i]}: ${cookiesSoldPerHour} cookies`;
+      storeData.appendChild(hourData);
+      this.totalCookies += cookiesSoldPerHour;
+      console.log(this.totalCookies);
+
+    }
+    var showTotalCookies = document.createdElement('li');
+    showTotalCookies.textContent = `Total: ${this.totalCookies} cookies`;
+    storeData.appendChild(showTotalCookies);
   }
 }
+
+SeatacAirport.render();
 
 var SeattleCenter = {
   minCust: 11,
