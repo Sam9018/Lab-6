@@ -1,117 +1,3 @@
-/*
-  OBJECTS - DOMAIN MODELING
-
-  - Attributes (NOUN)
-    i.e.
-      Windshield
-      Door
-      Tires
-      Engine Type
-      Color
-
-  - Behavior . (VERB)
-    - Warm your butt
-    - Move
-    - Stop
-
-*/
-
-// ARRAY []
-
-// OBJ {}
-// Property:Value
-//  "Key/Value Pair"
-// this = context
-// this.hair.color
-//  "this object's ... hair.color"
-//  "this is my hair.color"
-
-var sky = "blue";
-
-var zach = {
-  color: 'pale',
-  hair: {
-    color: 'brown',
-    type: 'curly',
-    texture: 'thick',
-    length: 'short'
-  }
-};
-
-var allie = {
-  color: 'pale',
-  hair: {
-    color: 'black',
-    type: 'curly',
-    texture: 'thick',
-    length: 'long'
-  },
-  run: function() { console.log('Running Fast'); },
-  walk: function() { console.log('Zach will be there later...'); }
-};
-
-var john = {
-  firstName: 'John',
-  lastName: 'Cokos',
-  height: '5-9',
-  weight: '',
-  color: 'pale',
-  hair: {
-    color: 'white',
-    type: 'curly',
-    texture: 'thick',
-    length: 'long'
-  },
-  children: [zach,allie], // Extensible
-  run: function() { console.log(`Running Fast`); },
-  walk: function() { console.log( `${sky} "will be" there's later...`); }
-}
-
-var lovelace = {
-  temp: 72,
-  light: 5,
-  dim: function(num) {
-    this.light = num;
-  },
-  heat: function(num) {
-    this.temp = num;
-  }
-}
-
-var turing = {
-  temp: 68,
-  light: 9,
-  dim: function(num) {
-    this.light = num;
-    this.heat(57);
-  },
-  heat: function(num) {
-    this.temp = num;
-  }
-}
-
-john.walk();
-john.run();
-
-console.log(turing);
-turing.dim(5);
-console.log(turing);
-
-console.log(JSON.stringify(turing));
-
-
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-
-
-
-
-
 'use strict';
 
 var garage = {
@@ -169,73 +55,98 @@ var pageInitialize = function () {
   garage.render();
 }
 
-
-pageInitialize();
-
-
-
-var myNewItem = document.createElement('span');
+// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 
+'use strict';
+
+function Person(name, toenails, bananas, car) {
+  this.name = name;
+  this.nickname = toenails;
+  this.age = bananas;
+  this.car = car;
+  Person.list.push(this);
+}
+Person.list = [];
+
+Person.think = function() {
+  console.log('thinkin');
+};
+
+Person.prototype.run = function() {
+  console.log(`${this.name} is runnin`);
+};
+
+Person.prototype.walk = function() {
+  console.log(`${this.name} is walkin`);
+};
 
 
-
-
-var SeatacAirport = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookiePer: 1.2,
-  name: ('Seatac Airport'),
-  totalCookiesSold: [],
-  totalCookies: 0,
-
-  generateRandom:function (min,max) {
-    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
-  },
-  cookiesPerHour: function() {
-    return Math.floor(this.generateRandom(this.minCust, this.maxCust))* this.avgCookiePer);
-  },
-
-  render: function () {
-
-    var divElement = document.getElementById('store');
-    var storeTitle = document.createElement('ul"');
-    storeTitle.textContent = this.name;
-    divElement.appendChild(storeData);
-
-
-    for (var i=0; i< time.length; i++) {
-      console.log(`${time[i]}: ${cookiesSoldPerHour} cookies`);
-      var  hourData = document.createdElement('li');
-      var cookiesSoldPerHour = this.cookiesPerHour();
-      hourData.textContent = `${time[i]}: ${cookiesSoldPerHour} cookies`;
-      storeData.appendChild(hourData);
-      this.totalCookies += cookiesSoldPerHour;
-      console.log(this.totalCookies);
-
-    }
-    var showTotalCookies = document.createdElement('li');
-    showTotalCookies.textContent = `Total: ${this.totalCookies} cookies`;
-    storeData.appendChild(showTotalCookies);
+/*
+  var john = {
+    name: 'John',
+    nickname: 'Baldy',
+    age: 50,
+    car: 'Mazda'
   }
+
+  The calls to the constructor below do the same thing ...
+  but they make instances of Person, not object literals.
+ */
+
+new Person('Cathy', 'Cat', NaN, 'GMC');
+var john = new Person('John', 'Baldy', 50, 'Mazda');
+new Person('Zach', 'Z', 20, 'Ford');
+new Person('Allie', 'Gator', 13, 'none');
+
+console.log(Person.list);
+
+for( var i = 0; i<Person.list.length; i++) {
+  Person.list[i].walk();
+  Person.list[i].run();
 }
 
-SeatacAirport.render();
+Person.think();
 
-var SeattleCenter = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookiePer: 3.7,
-}
 
-var CapitalHill = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookiePer: 2.3,
-}
+// sample way to render the table
 
-var Alki = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookiePer: 4.6,
-}
+function renderTable (){
+  var tableHeader = document.getElementById('tableHeader');
+  var tableBody = document.getElementById('tableBody');
+  var tableFooter = document.getElementById('tableFooter');
+  var tableRow = document.createElement('tr');
+  var cell = document.createElement('td');
+  // Blank cell
+  var firstColumn = document.createElement('th');
+  firstColumn.textContent = '';
+  tableRow.appendChild(firstColumn);
+  // Hours at top of table
+  for (var i = 0; i < time.length; i++) {
+    var tableHead = document.createElement('th');
+    tableHead.textContent = time[i];
+    tableRow.appendChild(tableHead);
+  }
+  //total cell at end
+  var lastColumn = document.createElement('th');
+  lastColumn.textContent = 'Total';
+  tableRow.appendChild(lastColumn);
+
+  tableHeader.appendChild(tableRow);
+
+  //This section is building the body of the table
+
+  for (i = 0; i < Location.list.length; i++) {
+    tableRow = document.createElement('tr');
+    var storeName = document.createElement('td');
+    storeName.textContent = Location.list[i].name;
+    tableRow.appendChild(storeName);
+
+    for (var t = 0; t < times.length; t++) {
+      var timeCookies = document.createElement('td');
+      timeCookies.textContent = Location.list[i].avgCookiesPerHourArray[t];
+      tableRow.appendChild(timeCookies);
+    }
+  }
