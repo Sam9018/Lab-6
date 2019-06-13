@@ -9,26 +9,47 @@
         <header>
             <h1>Pat's Salmon Cookie Sales By Location</h1>
         </header>
-        <table id='store'>
-            <thead id='tableHead'>
-                <tr>
-                    <th>
-                     </th>
-                 </tr>
-            </thead>
-            <tbody id='tableBody'>
-                <tr>
-                    <td>
-                     </td>
-                </tr>
-            </tbody>
-            <tfoot id="tableFoot">
-                <tr>
-                    <td>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+        <main>
+            <div>
+            
+                <table>
+                    <thead id = 'timeData'>
+
+                    </thead>
+
+                    <tbody id = 'storeData'>
+
+                    </tbody>
+                    
+                    <tfoot id = 'sumData'>
+                
+                </tfoot>
+
+
+                </table> 
+                  
+            
+                </table>
+            </div>
+            
+
+
+       
+        </main>
+        <main>
+            <div id='container'>
+                <form id = 'samForm'>
+                    <fieldset>
+                        <legned> New Store Data</legned>
+                        <input id='nameOfStore' name='task' type='text' placeholder='Enter your name here'/>
+                        <input id='minimunCustomers' name='task' type='number' placeholder="Enter Min"/>
+                        <input id='maximumCustomers' name='task' type='number' placeholder="Enter Max"/>
+                        <input id='averageCustomers' name='task' type='number' placeholder="Average Customers"/>
+                        <button id='submit' type="button">Click Me!</button>
+                    </fieldset>
+                </form>
+            </div>
+        </main>
         <script src="./app.js"></script>
     </body>
 </html>
