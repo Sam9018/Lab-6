@@ -125,8 +125,9 @@ function addNewStore (event) {
   var newMin = event.target.minimunCustomers.value;
   var newMax = event.target.maximumCustomers.value;
   var newAvg = event.target.averageCustomers.value;
+
   new Store(newName, newMin, newMax, newAvg);
-  Store.list[Store.list-1].createTableRows();
+  Store.list[Store.list.length-1].render();
 }
 
 
