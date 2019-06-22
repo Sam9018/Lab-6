@@ -88,7 +88,7 @@ var createTableRows = function() {
 var createTableFoot = function() {
   var tableFoot = document.getElementById('sumData');
   var tableRow = document.createElement('tr');
-
+  tableFoot.textContent = '';
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   tableRow.appendChild(cell);
@@ -99,6 +99,7 @@ var createTableFoot = function() {
     tableRow.appendChild(cell);
     tableFoot.appendChild(tableRow);
   }
+
 };
 
 var pike = new Store( 'First and Pike', 23, 65, 6.3);
@@ -121,13 +122,15 @@ form.addEventListener ('submit', addNewStore);
 
 function addNewStore (event) {
   event.preventDefault();
+  console.log(event.target);
   var newName = event.target.nameOfStore.value;
   var newMin = event.target.minimunCustomers.value;
   var newMax = event.target.maximumCustomers.value;
   var newAvg = event.target.averageCustomers.value;
 
   new Store(newName, newMin, newMax, newAvg);
-  Store.list[Store.list.length-1].render();
+  Store.list[Store.list.length-1].cookiesSoldrender();
+  createTableFoot();
 }
 
 
