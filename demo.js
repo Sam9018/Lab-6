@@ -1,152 +1,83 @@
 'use strict';
 
-var garage = {
+// global array of hours
+// #1
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm'];
 
-  items: ['car', 'bat', 'balls', 'tv'],
 
-  render: function () {
+// ID Dom elements
+// Thead for hours
+// #2
+var thead = document.getElementsByTagName('thead')[0];
 
-    // Find the ul
-    var stuffElement = document.getElementById('stuff');
+// Tbody for locations
+// #3
+var tbody = document.getElementsByTagName('tbody')[0];
 
-    for (let i = 0; i < this.items.length; i++) {
-      // Add a new element
-      var newItem = document.createElement('li');
+// Tfoot for totals
+// #4
+var tfoot = document.getElementsByTagName('tfoot')[0];
 
-      // Give that new element text
-      newItem.textContent = this.items[i];
 
-      // Add the new element to the ul
-      stuffElement.appendChild(newItem);
-    }
+// location constructor
+function Store(locationName, minPer, maxPer, avPer) {
+  this.locationName = locationName;
+  this.minPer = minPer;
+  this.maxPer = maxPer;
+  this.avPer = avPer;
+  this.totalPerDay = 0;
+  this.hourlyProjection = [];
+  this.calculateSales = ();
+
+}
+// prototype functiuon on the instance so it can see 'this'
+Store.prototype.calculateSales = function(){
+this.totalPerDay = 0;
+  for(var i = 0; i <hours.length; i++){
+    var numCust = math.ceil{
+      ((math.random() * (this.maxPer - this.minPer) + this.minPer
+    })
   }
-}
-
-
-// this.whatever
-
-
-var house = {
-
-  items: ['dishes', 'couch', 'roomba'],
-
-  render: function () {
-
-    // Find the ul
-    var stuffElement = document.getElementById('stuff');
-    
-    for (let i = 0; i < this.items.length; i++) {
-      // Add a new element
-      var newItem = document.createElement('li');
-
-      // Give that new element text
-      newItem.textContent = this.items[i];
-
-      // Add the new element to the ul
-      stuffElement.appendChild(newItem);
-    }
-  }
-}
-
-
-
-var pageInitialize = function () {
-  house.render();
-  garage.render();
-}
-
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-
-'use strict';
-
-function Person(name, toenails, bananas, car) {
-  this.name = name;
-  this.nickname = toenails;
-  this.age = bananas;
-  this.car = car;
-  Person.list.push(this);
-}
-Person.list = [];
-
-Person.think = function() {
-  console.log('thinkin');
 };
 
-Person.prototype.run = function() {
-  console.log(`${this.name} is runnin`);
-};
+// Render Stuff out
 
-Person.prototype.walk = function() {
-  console.log(`${this.name} is walkin`);
-};
-
-
-/*
-  var john = {
-    name: 'John',
-    nickname: 'Baldy',
-    age: 50,
-    car: 'Mazda'
-  }
-
-  The calls to the constructor below do the same thing ...
-  but they make instances of Person, not object literals.
- */
-
-new Person('Cathy', 'Cat', NaN, 'GMC');
-var john = new Person('John', 'Baldy', 50, 'Mazda');
-new Person('Zach', 'Z', 20, 'Ford');
-new Person('Allie', 'Gator', 13, 'none');
-
-console.log(Person.list);
-
-for( var i = 0; i<Person.list.length; i++) {
-  Person.list[i].walk();
-  Person.list[i].run();
+// addElement ( tr, th, 10am)
+function addElement(parent,element,content) {
+  var newElement = document.createElement(Element);
+  var textElement = document.createElement(content);
+  newElement.appendChild(textElement);
+  parent.appendChild(newElement);
+  return newElement;
 }
 
-Person.think();
-
-
-// sample way to render the table
-
-function renderTable (){
-  var tableHeader = document.getElementById('tableHeader');
-  var tableBody = document.getElementById('tableBody');
-  var tableFooter = document.getElementById('tableFooter');
-  var tableRow = document.createElement('tr');
-  var cell = document.createElement('td');
-  // Blank cell
-  var firstColumn = document.createElement('th');
-  firstColumn.textContent = '';
-  tableRow.appendChild(firstColumn);
-  // Hours at top of table
-  for (var i = 0; i < time.length; i++) {
-    var tableHead = document.createElement('th');
-    tableHead.textContent = time[i];
-    tableRow.appendChild(tableHead);
+function renderHeader() {
+  // add a tr to the head
+  var tr = addElement(thead, 'tr', '');
+  for(var i=0; i < hours.length; i++) {
+    // add a th for each Header
+    addElement(tr, 'th', hours[i]);
   }
-  //total cell at end
-  var lastColumn = document.createElement('th');
-  lastColumn.textContent = 'Total';
-  tableRow.appendChild(lastColumn);
+  addElement(tr, 'th', Totals);
+}
 
-  tableHeader.appendChild(tableRow);
 
-  //This section is building the body of the table
-
-  for (i = 0; i < Location.list.length; i++) {
-    tableRow = document.createElement('tr');
-    var storeName = document.createElement('td');
-    storeName.textContent = Location.list[i].name;
-    tableRow.appendChild(storeName);
-
-    for (var t = 0; t < times.length; t++) {
-      var timeCookies = document.createElement('td');
-      timeCookies.textContent = Location.list[i].avgCookiesPerHourArray[t];
-      tableRow.appendChild(timeCookies);
-    }
+function renderFooter() {
+  // add a tr to the head
+  var tr = addElement(thead, 'tr', '');
+  for(var i=0; i < hours.length; i++) {
+    // add a th for each Header
+    addElement(tr, 'th', hours[i]);
   }
+  addElement(tr, 'th', Totals);
+}
+
+
+// Create instanses of Stores
+  // assign data
+  // keep track of our total
+  // render ourselves into the tBody
+
+  var pike = new Store('pike', 22,65,6.3);
+
+
